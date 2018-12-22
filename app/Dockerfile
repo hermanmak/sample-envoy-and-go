@@ -1,18 +1,9 @@
-FROM envoyproxy/envoy:latest
+FROM golang:alpine
 
-# Install Go
-RUN apt-get update && apt-get -q install -y curl
-RUN \
-  mkdir -p /goroot && \
-  curl https://storage.googleapis.com/golang/go1.4.2.linux-amd64.tar.gz | tar xvzf - -C /goroot --strip-components=1
+ADD ./src /go/src/app
 
-COPY main.go .
-RUN ls
+WORKDIR /go/src/app
 
-# Set environment variables.
-ENV GOROOT /goroot
-ENV GOPATH /
-ENV PATH $GOROOT/bin:$GOPATH/bin:$PATH
+ENV PORT=8080
 
-# Define working directory.
-RUN go run main.go
+CMD ["go", "run", "main.go"]
