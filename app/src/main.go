@@ -6,10 +6,15 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/", index)
+	http.HandleFunc("/service", handle)
 	http.ListenAndServe(":8080", nil)
 }
 
-func handler(w http.ResponseWriter, r *http.Request) {
+func index(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World!")
+}
+
+func handle(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello World SERVICE!")
 }

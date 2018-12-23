@@ -1,20 +1,30 @@
 version: '2'
 services:
-  front-envoy:
+  service-envoy:
     build:
       context: ./proxy
-      dockerfile: Dockerfile-frontproxy
+      dockerfile: Dockerfile
     links:
       - "goserver"
-    volumes:
-      - ./front-envoy.json:/etc/front-envoy.json
+    networks:
+      - envoymesh
     ports:
       - "8000:80"
       - "8001:8001"
+    expose:
+      - "80"
+      - "8001"
 
   goserver:
     build:
       context: ./app
       dockerfile: Dockerfile
+    networks:
+      - envoymesh
+    ports:
+      - "8080:8080"
     expose:
       - "8080"
+
+networks:
+  envoymesh: {}
