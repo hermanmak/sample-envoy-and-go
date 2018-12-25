@@ -1,30 +1,30 @@
-version: '2'
+version: '3'
 services:
   service-envoy:
     build:
       context: ./proxy
       dockerfile: Dockerfile
-    links:
-      - "goserver"
-    networks:
-      - envoymesh
     ports:
       - "8000:80"
-      - "8001:8001"
+      - "8081:8081"
     expose:
       - "80"
-      - "8001"
+      - "8081"
+    networks:
+      - my-network-name
+    links:
+      - goserver
 
   goserver:
     build:
       context: ./app
       dockerfile: Dockerfile
-    networks:
-      - envoymesh
     ports:
-      - "8080:8080"
+      - "8080:7000"
     expose:
-      - "8080"
+      - "7000"
+    networks:
+      - my-network-name
 
 networks:
-  envoymesh: {}
+  my-network-name:
