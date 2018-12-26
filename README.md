@@ -1,4 +1,4 @@
-# A simple reverse proxy example with a golang server
+# A simple reverse proxy example using Envoy and Golang
 
 ### Gotchas:
 1. Although Docker-compose allows your to orchestrate multiple containers, communication between the containers must be set. To set this we create a "network" in the Docker-compose file. Two containers in the same network can communicate with each other using the Docker-compose name.
