@@ -1,4 +1,5 @@
 # A simple reverse proxy example using Envoy and Golang
+The examples online mostly use python/flask and usually involve running both the flask server and the envoy proxy in the same container (AKA Dockerfile). This example has the server and reverse proxy as a sidecar container. Hope it helps!
 
 ### Gotchas:
 1. Although Docker-compose allows your to orchestrate multiple containers, communication between the containers must be set. To set this we create a "network" in the Docker-compose file. Two containers in the same network can communicate with each other using the Docker-compose name. Our network is called "frontend".
