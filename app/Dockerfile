@@ -4,6 +4,6 @@ ADD ./src /go/src/app
 
 WORKDIR /go/src/app
 
-ENV PORT=8080
+RUN go build -o myapp 
 
-CMD ["go", "run", "main.go"]
+ENTRYPOINT ./myapp
