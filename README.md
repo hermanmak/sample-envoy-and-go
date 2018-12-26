@@ -6,5 +6,5 @@
 3. Linked containers do not access each other through the host post, but by the internal container port. Hence the envoy proxy in this example forwards requests to goserver port 7000, instead of 8080.
 
 ### Other Useful tips
-1. Container orchestration is done using Docker-compose, other similar ochestration tools are the Amazon ECS Task and Kubernetes Pod. They all have the same idea in that they for networks to connect containers together on the same host, they open and close ports on the host, they hey route host ports to container ports. 
+1. Container orchestration is done using __Docker-compose__, other similar ochestration tools are the __Amazon ECS Task__ and __Kubernetes Pod__. They all have the same idea in that they for networks to connect containers together on the same host, they open and close ports on the host, they hey route host ports to container ports. 
    * Check out this [tool](https://github.com/micahhausler/container-transform) that converts your orchestration files to other forms.
