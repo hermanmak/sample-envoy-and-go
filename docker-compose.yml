@@ -1,28 +1,41 @@
 version: '3'
 services:
-  service-envoy:
+
+  front-envoy:
     build:
-      context: ./proxy
+      context: ./front
       dockerfile: Dockerfile
     ports:
-      - "8000:80"
-      - "8081:8081"
+      - "9000:80"
+      - "9001:8081"
     expose:
       - "80"
       - "8081"
     networks:
-      - frontend
+      - envoymesh
+
+  service-envoy:
+    build:
+      context: ./service
+      dockerfile: Dockerfile
+    ports:
+      - "7778:8081"
+    expose:
+      - "80"
+      - "8081"
+    networks:
+      - backendnetwork
+      - envoymesh
 
   goserver:
     build:
       context: ./app
       dockerfile: Dockerfile
-    ports:
-      - "8080:7000"
     expose:
       - "7000"
     networks:
-      - frontend
+      - backendnetwork
 
 networks:
-  frontend:
+  backendnetwork:
+  envoymesh:
