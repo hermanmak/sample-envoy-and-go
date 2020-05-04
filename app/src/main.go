@@ -7,9 +7,16 @@ import (
 
 func main() {
 	http.HandleFunc("/service", handle)
+        http.HandleFunc("/ping", ping)
 	http.ListenAndServe(":7000", nil)
 }
 
 func handle(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, "Hello World SERVICE!")
+}
+
+
+func ping(w http.ResponseWriter, r *http.Request) {
+        w.Header().Set("Server","A Go Web Server")
+        w.WriteHeader(200)
 }
